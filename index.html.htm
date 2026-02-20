@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de facturación-México</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: linear-gradient(180deg, #002060 0%, #0D2E80 25%, #1E40AF 60%, #0047BA 100%);
+      --color-bg-section: rgba(255, 255, 255, 0.97);
+      --color-primary: #1A73E8;
+      --color-primary-btn: #007BFF;
+      --color-text: #1f2937;
+      --color-text-on-dark: #FFFFFF;
+      --color-text-muted: #6b7280;
+      --color-border: #e5e7eb;
+      --color-accent: #f59e0b;
+      --shadow: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,.12);
+      --radius: 12px;
+      --radius-btn: 10px;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 12px; }
+    body { margin: 0; font-family: var(--font-sans); font-size: 1rem; line-height: 1.6; color: var(--color-text); background: #0D2E80; background: linear-gradient(180deg, #002060 0%, #0D2E80 20%, #1E40AF 55%, #0047BA 100%); min-height: 100vh; }
+    .nav-wrap { position: sticky; top: 0; z-index: 100; background: linear-gradient(180deg, #002060 0%, #0D2E80 100%); box-shadow: var(--shadow-md); }
+    .nav-inner { max-width: 960px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; flex-direction: column; align-items: center; }
+    .logo-header { height: 43px; width: auto; margin-bottom: 2rem; display: block; filter: brightness(0) invert(1); }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem .6rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { display: inline-block; padding: .55rem 1rem; color: var(--color-text-on-dark); text-decoration: none; border-radius: var(--radius-btn); font-weight: 600; font-size: 14px; background: var(--color-primary-btn); border: none; transition: background .2s, transform .15s; }
+    .nav-links a:hover { background: #0056b3; transform: translateY(-1px); }
+    main { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .section-inner { background: var(--color-bg-section); border-radius: var(--radius); padding: 1.75rem 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-md); display: none; }
+    .section-inner.panel-visible { display: block; }
+    h1 { font-family: var(--font-sans); font-size: 1.75rem; font-weight: 700; color: #0D2E80; margin: 0 0 1rem 0; padding-bottom: .5rem; border-bottom: 2px solid var(--color-primary); }
+    h2 { font-family: var(--font-sans); font-size: 1.35rem; font-weight: 600; color: var(--color-text); margin: 2rem 0 1rem 0; }
+    p { margin: 0 0 1rem 0; }
+    ul { margin: 0 0 1rem 0; padding-left: 1.5rem; }
+    .card { background: #f0f7ff; border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1rem 0; border: 1px solid rgba(26, 115, 232, 0.3); box-shadow: var(--shadow); }
+    .card.info { border-left: 4px solid var(--color-primary); background: #eff6ff; border-color: rgba(26, 115, 232, 0.4); }
+    .fiscal-table-container { width: 100%; overflow-x: auto; margin: 1rem 0; }
+    .fiscal-table { width: 100%; border-collapse: collapse; font-size: .85rem; min-width: 600px; }
+    .fiscal-table th, .fiscal-table td { padding: .7rem .75rem; border: 1px solid var(--color-border); text-align: left; }
+    .fiscal-table th { background: #eef2ff; font-weight: 600; color: #0D2E80; }
+    .si { color: #0D2E80; font-weight: 500; }
+    .dep { color: #6b7280; }
+    select { width: 100%; max-width: 400px; padding: .6rem .75rem; font-family: var(--font-sans); font-size: 1rem; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; cursor: pointer; margin-bottom: 1rem; }
+    .total-row { font-weight: 700; background: #e0f2fe; }
+    .retencion-neg { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <nav class="nav-wrap">
+    <div class="nav-inner">
+      <img class="logo-header" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Logo_de_Tiendanube.svg" alt="Tiendanube">
+      <ul class="nav-links">
+        <li><a href="#ejemplo-facturacion" class="nav-btn" data-panel="ejemplo-facturacion">Ejemplo por régimen</a></li>
+        <li><a href="#datos-fiscales" class="nav-btn" data-panel="datos-fiscales">Datos fiscales</a></li>
+        <li><a href="#requisitos-fiscales" class="nav-btn" data-panel="requisitos-fiscales">Requisitos fiscales</a></li>
+        <li><a href="#documentacion" class="nav-btn" data-panel="documentacion">Documentación y envío</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="ejemplo-facturacion">
+      <div class="section-inner panel-visible" data-panel="ejemplo-facturacion">
+        <h1>Ejemplo de facturación por régimen fiscal</h1>
+        <p>Desglose calculado automáticamente para un <strong>Total a recibir de $1,000.00 MXN</strong>.</p>
+        
+        <label for="regimen-select">Selecciona tu régimen fiscal</label>
+        <select id="regimen-select">
+          <option value="">-- Elige un régimen --</option>
+          <option value="pf-actividades">Personas Físicas con Actividades Empresariales y Profesionales</option>
+          <option value="resico-pf">Régimen Simplificado de Confianza (Persona Física)</option>
+          <option value="resico-pm">Régimen Simplificado de Confianza (Persona Moral)</option>
+          <option value="general-pm">General de Ley Personas Morales</option>
+          <option value="sueldos">Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
+          <option value="arrendamiento">Arrendamiento</option>
+          <option value="extranjero">Residentes en el Extranjero sin E.P.</option>
+          <option value="incorporacion">Incorporación Fiscal (RIF)</option>
+          <option value="plataformas">Régimen de Actividades con Ingresos vía Plataformas Tecnológicas</option>
+          <option value="servicios-prof">Servicios Profesionales</option>
+        </select>
+
+        <div id="contenedor-ejemplo" class="card" style="background: #fff; border: 1px solid var(--color-border); display: none; padding: 1.5rem;">
+          <div id="tabla-ejemplo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="datos-fiscales">
+      <div class="section-inner" data-panel="datos-fiscales">
+        <h1>Datos fiscales de Tiendanube México</h1>
+        <div class="card info">
+          <p><strong>RFC:</strong> NSM1805295G4</p>
+          <p><strong>Denominación / Razón social:</strong> NUVEM SHOP MEXICO</p>
+          <p><strong>Régimen fiscal:</strong> Régimen General de Ley Personas Morales</p>
+          <p><strong>Domicilio fiscal:</strong> Av. Sonora 46, Interior 201, Col. Roma Norte, CP 06700, CDMX.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="requisitos-fiscales">
+      <div class="section-inner" data-panel="requisitos-fiscales">
+        <h1>Requisitos fiscales y retenciones</h1>
+        
+        <h2>Consideraciones generales</h2>
+        <ul>
+          <li><strong>Forma de pago:</strong> "Por definir" (99).</li>
+          <li><strong>Uso de CFDI:</strong> Gastos en general.</li>
+          <li><strong>Método de pago:</strong> PPD (Pagos en Parcialidades o Diferidos).</li>
+          <li><strong>Descripción:</strong> Servicio o producto entregado + mes.</li>
+        </ul>
+
+        <p style="margin-top: 25px;">Tiendanube requiere verificar tu régimen fiscal para aplicar impuestos y retenciones correctos:</p>
+        <div class="fiscal-table-container">
+          <table class="fiscal-table">
+            <thead>
+              <tr>
+                <th>Régimen fiscal</th>
+                <th>IVA 16%</th>
+                <th>Ret. IVA 10.6666%</th>
+                <th>Ret. ISR 1.25%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Personas Físicas con Actividades Empresariales y Profesionales</td><td class="si">Aplica</td><td class="dep">Según tipo de servicio</td><td class="dep">1.25% hasta 10%</td></tr>
+              <tr><td>Régimen Simplificado de Confianza (Persona Física)</td><td class="si">Aplica</td><td class="si">Aplica</td><td class="si">Aplica</td></tr>
+              <tr><td>Régimen Simplificado de Confianza (Persona Moral)</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>General de Ley Personas Morales</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>Sueldos y Salarios e Ingresos Asimilados a Salarios</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>Arrendamiento</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>Residentes en el Extranjero sin E.P. en México</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>Incorporación Fiscal</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>Plataformas Tecnológicas</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+              <tr><td>Servicios Profesionales</td><td class="si">Aplica</td><td>-</td><td>-</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top: 20px;">Para <strong>Régimen Simplificado de Confianza</strong> (Persona Física) que presta servicios a una persona moral como Tiendanube, las facturas deben incluir retención de IVA 10.6666% y retención de ISR 1.25%, según el Reglamento de la Ley del IVA y la Ley del ISR.</p>
+      </div>
+    </section>
+
+    <section id="documentacion">
+      <div class="section-inner" data-panel="documentacion">
+        <h1>Documentación necesaria y envío</h1>
+        <h2>Documentos que debes enviar</h2>
+        <ul>
+          <li>Factura en formato <strong>PDF</strong>.</li>
+          <li><strong>Constancia de Situación Fiscal</strong> actualizada.</li>
+          <li><strong>Carátula bancaria</strong> (para transferencia).</li>
+        </ul>
+        <h2>Envío de facturas al equipo de Controlling</h2>
+        <p>Envía las facturas a la casilla correspondiente:</p>
+        <ul class="contact-list">
+          <li><a href="mailto:vendors_mx@tiendanube.com">vendors_mx@tiendanube.com</a></li>
+        </ul>
+        <div class="card info">
+          <p>El pago de las facturas se realiza dentro de <strong>30 días</strong> luego de su recepción.</p>
+          <p>En el caso de necesitar una excepción, solicitarla por el canal de Slack: <strong>#mex-excepción-pago-vendors</strong>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const TOTAL_FINAL = 1000;
+      const IVA_TASA = 0.16;
+      const RET_IVA_TASA = 0.106666;
+
+      const config = {
+        'pf-actividades': { nombre: 'P. Físicas Act. Empresariales y Prof.', retIva: true, retIsr: 0.10 },
+        'resico-pf': { nombre: 'Régimen Simplificado de Confianza (PF)', retIva: true, retIsr: 0.0125 },
+        'resico-pm': { nombre: 'Régimen Simplificado de Confianza (PM)', retIva: false, retIsr: 0 },
+        'general-pm': { nombre: 'General de Ley Personas Morales', retIva: false, retIsr: 0 },
+        'sueldos': { nombre: 'Sueldos y Salarios', retIva: false, retIsr: 0 },
+        'arrendamiento': { nombre: 'Arrendamiento', retIva: false, retIsr: 0 },
+        'extranjero': { nombre: 'Residentes Extranjero', retIva: false, retIsr: 0 },
+        'incorporacion': { nombre: 'Incorporación Fiscal', retIva: false, retIsr: 0 },
+        'plataformas': { nombre: 'Plataformas Tecnológicas', retIva: false, retIsr: 0 },
+        'servicios-prof': { nombre: 'Servicios Profesionales', retIva: false, retIsr: 0 }
+      };
+
+      function mostrarPanel(panelId) {
+        document.querySelectorAll('.section-inner').forEach(el => {
+          el.classList.toggle('panel-visible', el.getAttribute('data-panel') === panelId);
+        });
+      }
+
+      document.querySelectorAll('.nav-btn').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = link.getAttribute('data-panel');
+          mostrarPanel(id);
+          history.replaceState(null, '', '#' + id);
+        });
+      });
+
+      document.getElementById('regimen-select').addEventListener('change', function() {
+        const val = this.value;
+        const contenedor = document.getElementById('contenedor-ejemplo');
+        const tabla = document.getElementById('tabla-ejemplo');
+        
+        if(!val || !config[val]) {
+          contenedor.style.display = 'none';
+          return;
+        }
+
+        const reg = config[val];
+        const factorRetIva = reg.retIva ? RET_IVA_TASA : 0;
+        const subtotal = TOTAL_FINAL / (1 + IVA_TASA - factorRetIva - reg.retIsr);
+        const iva = subtotal * IVA_TASA;
+        const retIva = subtotal * factorRetIva;
+        const retIsr = subtotal * reg.retIsr;
+
+        contenedor.style.display = 'block';
+        tabla.innerHTML = `
+          <h3 style="margin-top:0; color:#0D2E80;">Desglose para ${reg.nombre}</h3>
+          <table style="width:100%; border-collapse: collapse; margin-top:1rem;">
+            <tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0;">Subtotal</td><td style="text-align:right;">$${subtotal.toFixed(2)}</td></tr>
+            <tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0;">IVA (16%)</td><td style="text-align:right;">$${iva.toFixed(2)}</td></tr>
+            ${retIva > 0 ? `<tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0;" class="retencion-neg">(-) Retención IVA (10.66%)</td><td style="text-align:right;" class="retencion-neg">-$${retIva.toFixed(2)}</td></tr>` : ''}
+            ${retIsr > 0 ? `<tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0;" class="retencion-neg">(-) Retención ISR (${(reg.retIsr * 100).toFixed(2)}%)</td><td style="text-align:right;" class="retencion-neg">-$${retIsr.toFixed(2)}</td></tr>` : ''}
+            <tr style="font-weight:700; font-size:1.1rem;"><td style="padding: 12px 0;">Total a Recibir</td><td style="text-align:right; padding: 12px 0;">$${TOTAL_FINAL.toFixed(2)}</td></tr>
+          </table>
+        `;
+      });
+
+      mostrarPanel(window.location.hash.replace('#', '') || 'ejemplo-facturacion');
+    })();
+  </script>
+</body>
+</html>
